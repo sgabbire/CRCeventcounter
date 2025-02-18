@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The GMU Cyber Resilience Center - Events</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .video-section {
+            margin: 2rem 0;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding-right: 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: #64ffda #0a192f;
+        }
+
+        .video-section::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .video-section::-webkit-scrollbar-track {
+            background: #0a192f;
+        }
+
+        .video-section::-webkit-scrollbar-thumb {
+            background-color: #64ffda;
+            border-radius: 4px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            padding: 0.5rem;
+        }
+
+        .video-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(100, 255, 218, 0.2);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .video-thumbnail {
+            opacity: 0.8;
+        }
+
+        .video-info {
+            padding: 0.75rem;
+        }
+
+        .video-title {
+            color: #64ffda;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .video-date {
+            color: #8892b0;
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 1024px) {
+            .content-wrapper {
+                grid-template-columns: 2fr 1fr;
+                align-items: start;
+                gap: 3rem;
+            }
+            
+            .video-section {
+                position: sticky;
+                top: 100px;
+                max-height: calc(100vh - 120px);
+            }
+        }
+
+        @media (max-width: 1023px) {
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .video-section {
+                max-height: none;
+                overflow-y: visible;
+            }
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            z-index: 10;
+        }
+
+        .social-links a {
+            color: #64ffda;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            padding: 1rem 2rem;
+            background: rgba(10, 25, 47, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <header>
+        <nav>
+            <div class="org-name">The GMU Cyber Resilience Center</div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/company/gmu-crc/" target="_blank" rel="noopener noreferrer" class="linkedin">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.youtube.com/@CRC-GMU" target="_blank" rel="noopener noreferrer" class="youtube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="upcoming-event">
+            <h1>Next Event</h1>
+            <a href="events/upcoming-ai-state-local-gov.html" class="event-link">
+                <div class="event-card">
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <span id="days">00</span>
+                            <span>Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="hours">00</span>
+                            <span>Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="minutes">00</span>
+                            <span>Minutes</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="seconds">00</span>
+                            <span>Seconds</span>
+                        </div>
+                    </div>
+                    <h2 id="upcoming-event-title">How are States and Local Governments Developing AI Policy?</h2>
+                    <p id="upcoming-event-date"></p>
+                    <p id="upcoming-event-description">Join us for an insightful discussion on AI policy development at state and local government levels.</p>
+                    <div class="glow-button">Learn More</div>
+                </div>
+            </a>
+        </section>
+
+        <div class="content-wrapper">
+            <section class="past-events">
+                <h2>Past Events</h2>
+                <div class="events-grid" id="past-events-container">
+                    <!-- Past events will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <section class="video-section">
+                <h2>Latest Videos</h2>
+                <div class="video-grid">
+                    <a href="https://www.youtube.com/watch?v=IyshEuLIWp8" class="video-card" target="_blank">
+                        <img src="https://img.youtube.com/vi/IyshEuLIWp8/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=UdLJYfG_THI" class="video-card" target="_blank">
+                        <img src="https://img.youtube.com/vi/UdLJYfG_THI/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=7vOUkdCJt2o" class="video-card" target="_blank">
+                        <img src="https://img.youtube.com/vi/7vOUkdCJt2o/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=XEP_0apk8Oc" class="video-card" target="_blank">
+                        <img src="https://img.youtube.com/vi/XEP_0apk8Oc/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=YXRRagHzpyE" class="video-card" target="_blank">
+                        <img src="https://img.youtube.com/vi/YXRRagHzpyE/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=NV9itPL66BM" class="video-card" target="_blank">
+                        <img src="https://img.youtube.com/vi/NV9itPL66BM/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=4JImJ55Qcgk" class="video-card" target="_blank">
+                        <img src="https://img.youtube.com/vi/4JImJ55Qcgk/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=GXci9S0XS2E" class="video-card" target="_blank">
+                        <img src="https://img.youtube.com/vi/GXci9S0XS2E/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=yot-eWZZRj4" class="video-card" target="_blank">
+                        <img src="https://img.youtube.com/vi/yot-eWZZRj4/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 The GMU Cyber Resilience Center. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
