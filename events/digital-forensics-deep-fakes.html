@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Forensics of Deep Fakes: From Research to Practice - GMU CRC</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .event-details {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .event-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .event-date {
+            color: #64ffda;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .speaker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .speaker-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speaker-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .speaker-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .speaker-name {
+            color: #64ffda;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .speaker-title {
+            color: #8892b0;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .speaker-bio {
+            color: #ffffff;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-top: 1rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            margin: 2rem 0;
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(100, 255, 218, 0.2);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+        }
+
+        .event-description {
+            line-height: 1.6;
+            margin: 2rem 0;
+        }
+
+        .event-description ul {
+            margin-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .event-description li {
+            margin-bottom: 0.5rem;
+        }
+
+        .registration-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #64ffda;
+            color: #0a192f;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .registration-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(100, 255, 218, 0.4);
+        }
+
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .expertise-tag {
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .speaker-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #64ffda;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <header>
+        <nav>
+            <div class="org-name">The GMU Cyber Resilience Center</div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/company/gmu-crc/" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.youtube.com/@CRC-GMU" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <a href="../index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Events
+        </a>
+        
+        <div class="event-details">
+            <div class="event-header">
+                <h1>Digital Forensics of Deep Fakes: From Research to Practice</h1>
+                <p class="event-date">November 12, 2024 | 1:00 PM - 3:30 PM EST</p>
+            </div>
+
+            <div class="event-description">
+                <h2>About the Event</h2>
+                <p>Join us for a comprehensive exploration of the latest techniques in detecting and analyzing deep fake content. This session bridges the gap between academic research and practical applications in digital forensics, focusing on the challenges and solutions in combating sophisticated deep fake technologies.</p>
+                
+                <p>Key topics include:</p>
+                <ul>
+                    <li>Current state of deep fake detection technologies</li>
+                    <li>Advanced forensic analysis techniques</li>
+                    <li>Machine learning approaches in fake content detection</li>
+                    <li>Real-world case studies and practical applications</li>
+                    <li>Future challenges and emerging threats</li>
+                </ul>
+            </div>
+
+            <h2>Featured Speakers</h2>
+            <div class="speaker-grid">
+                <div class="speaker-card">
+                    <div class="speaker-image" style="background-image: url('../images/speakers/deep-fakes/speaker1.jpg')"></div>
+                    <h3 class="speaker-name">Robert Osgood (Bob)</h3>
+                    <p class="speaker-title">26-year FBI Computer Forensics Examiner<br>Technically Trained Special Agent</p>
+                    <p class="speaker-bio">An engineer/C.P.A. and veteran FBI Computer Forensics Examiner, Bob's specialties include digital forensics, data intercept, cybercrime, enterprise criminal organizations, espionage, and counter-terrorism. In the course of his work, he has performed digital forensics research and development and created unique new software tools for computer forensic law enforcement.</p>
+                    <div class="expertise-tags">
+                        <span class="expertise-tag">Digital Forensics</span>
+                        <span class="expertise-tag">Cybercrime</span>
+                        <span class="expertise-tag">Law Enforcement</span>
+                    </div>
+                </div>
+
+                <div class="speaker-card">
+                    <div class="speaker-image" style="background-image: url('../images/speakers/deep-fakes/speaker2.jpg')"></div>
+                    <h3 class="speaker-name">Jim Jones</h3>
+                    <p class="speaker-title">Cyber Security and Digital Forensics Expert<br>30+ Years Experience</p>
+                    <p class="speaker-bio">Jim Jones has been a cyber security and digital forensics practitioner, researcher, and educator for over 30 years in industry, government, and academia. That experience drives his teaching, which blends theory and practical applications, and his research, which focuses on the extraction, analysis, and manipulation of full and partial digital artifacts.</p>
+                    <div class="expertise-tags">
+                        <span class="expertise-tag">Cyber Security</span>
+                        <span class="expertise-tag">Digital Forensics</span>
+                        <span class="expertise-tag">Research</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 The GMU Cyber Resilience Center. All rights reserved.</p>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html> 

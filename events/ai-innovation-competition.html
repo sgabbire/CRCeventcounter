@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI EXECUTIVE ORDER SERIES: Innovation and Competition - GMU CRC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .event-details {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .event-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .event-date {
+            color: #64ffda;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .speaker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .speaker-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speaker-name {
+            color: #64ffda;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .speaker-title {
+            color: #8892b0;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .speaker-bio {
+            color: #ffffff;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-top: 1rem;
+        }
+
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .expertise-tag {
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .speaker-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #64ffda;
+        }
+
+        @media (max-width: 768px) {
+            .event-header h1 {
+                font-size: 2rem;
+                padding: 0 1rem;
+            }
+            
+            .speaker-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .event-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            main {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <header>
+        <nav>
+            <div class="org-name">The GMU Cyber Resilience Center</div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/company/gmu-crc/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.youtube.com/@CRC-GMU" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <a href="../index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Events
+        </a>
+        
+        <div class="event-details">
+            <div class="event-header">
+                <h1>AI EXECUTIVE ORDER SERIES: Innovation and Competition</h1>
+                <p class="event-date">June 20, 2024 | 2:00 PM - 4:00 PM EST</p>
+                <a href="#register" class="registration-button">Register Now</a>
+            </div>
+
+            <div class="event-description">
+                <h2>About the Event</h2>
+                <p>Join us for a comprehensive discussion on the international implications of the AI Executive Order, focusing on innovation and competition in the global AI landscape. This session will explore how the order impacts U.S. competitiveness while promoting responsible AI development.</p>
+                
+                <p>Key topics include:</p>
+                <ul>
+                    <li>Global AI competition and U.S. positioning</li>
+                    <li>Balancing innovation with security concerns</li>
+                    <li>International collaboration frameworks</li>
+                    <li>Impact on research and development</li>
+                    <li>Strategic implications for U.S. AI leadership</li>
+                </ul>
+            </div>
+
+            <h2>Featured Speakers</h2>
+            <div class="speaker-grid">
+                <div class="speaker-card">
+                    <div class="speaker-image" style="background-image: url('../images/speakers/innovation/speaker1.jpg')"></div>
+                    <h3 class="speaker-name">Dr. Michael Lee</h3>
+                    <p class="speaker-title">Senior Policy Advisor<br>National AI Initiative Office</p>
+                    <p class="speaker-bio">Dr. Lee shapes national AI policy and strategy, focusing on maintaining U.S. leadership in AI innovation while ensuring responsible development.</p>
+                    <div class="expertise-tags">
+                        <span class="expertise-tag">AI Policy</span>
+                        <span class="expertise-tag">Innovation Strategy</span>
+                        <span class="expertise-tag">Global Competition</span>
+                    </div>
+                </div>
+
+                <div class="speaker-card">
+                    <div class="speaker-image" style="background-image: url('../images/speakers/innovation/speaker2.jpg')"></div>
+                    <h3 class="speaker-name">Dr. Rachel Chen</h3>
+                    <p class="speaker-title">Director of International Affairs<br>AI Industry Alliance</p>
+                    <p class="speaker-bio">Dr. Chen specializes in international AI collaboration and competition, advising on cross-border AI initiatives and partnerships.</p>
+                    <div class="expertise-tags">
+                        <span class="expertise-tag">International Relations</span>
+                        <span class="expertise-tag">AI Diplomacy</span>
+                        <span class="expertise-tag">Strategic Planning</span>
+                    </div>
+                </div>
+
+                <div class="speaker-card">
+                    <div class="speaker-image" style="background-image: url('../images/speakers/innovation/speaker3.jpg')"></div>
+                    <h3 class="speaker-name">Thomas Anderson</h3>
+                    <p class="speaker-title">Chief Innovation Officer<br>Tech Competitiveness Council</p>
+                    <p class="speaker-bio">Thomas leads initiatives to foster AI innovation while ensuring compliance with regulatory frameworks and security requirements.</p>
+                    <div class="expertise-tags">
+                        <span class="expertise-tag">Innovation Management</span>
+                        <span class="expertise-tag">Competitive Strategy</span>
+                        <span class="expertise-tag">Technology Policy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 The GMU Cyber Resilience Center. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS.load('particles-js', '../particles-config.json');
+    </script>
+</body>
+</html> 
