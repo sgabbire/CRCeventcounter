@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy, Data Centers and Regulatory Sandboxes - GMU CRC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .event-details {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .event-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .event-date {
+            color: #64ffda;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .speaker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .speaker-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speaker-name {
+            color: #64ffda;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .speaker-title {
+            color: #8892b0;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .speaker-bio {
+            color: #ffffff;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-top: 1rem;
+        }
+
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .expertise-tag {
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .speaker-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #64ffda;
+        }
+
+        @media (max-width: 768px) {
+            .event-header h1 {
+                font-size: 2rem;
+                padding: 0 1rem;
+            }
+            
+            .speaker-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .event-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            main {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <header>
+        <nav>
+            <div class="org-name">The GMU Cyber Resilience Center</div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/company/gmu-crc/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.youtube.com/@CRC-GMU" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <a href="../index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Events
+        </a>
+        
+        <div class="event-details">
+            <div class="event-header">
+                <h1>Energy, Data Centers and Regulatory Sandboxes</h1>
+                <p class="event-date">August 22, 2024 | 1:00 PM - 3:00 PM EST</p>
+                <a href="#register" class="registration-button">Register Now</a>
+            </div>
+
+            <div class="event-description">
+                <h2>About the Event</h2>
+                <p>Join us for an innovative discussion exploring the intersection of energy management, data center operations, and regulatory frameworks. This session will delve into the challenges and opportunities in creating sustainable, efficient data center infrastructures while navigating regulatory requirements.</p>
+                
+                <p>Key topics include:</p>
+                <ul>
+                    <li>Energy efficiency in modern data centers</li>
+                    <li>Regulatory sandbox approaches for innovation</li>
+                    <li>Sustainable energy solutions</li>
+                    <li>Balancing growth with environmental impact</li>
+                    <li>Future of data center energy management</li>
+                </ul>
+            </div>
+
+            <h2>Featured Speakers</h2>
+            <div class="speaker-grid">
+                <div class="speaker-card">
+                    <div class="speaker-image" style="background-image: url('../images/speakers/energy/speaker1.jpg')"></div>
+                    <h3 class="speaker-name">Dr. Emily Watson</h3>
+                    <p class="speaker-title">Energy Systems Director<br>National Data Center Alliance</p>
+                    <p class="speaker-bio">Dr. Watson leads research on innovative energy solutions for data centers, focusing on efficiency and sustainability.</p>
+                    <div class="expertise-tags">
+                        <span class="expertise-tag">Energy Systems</span>
+                        <span class="expertise-tag">Sustainability</span>
+                        <span class="expertise-tag">Infrastructure</span>
+                    </div>
+                </div>
+
+                <div class="speaker-card">
+                    <div class="speaker-image" style="background-image: url('../images/speakers/energy/speaker2.jpg')"></div>
+                    <h3 class="speaker-name">Mark Thompson</h3>
+                    <p class="speaker-title">Regulatory Innovation Lead<br>Energy Policy Institute</p>
+                    <p class="speaker-bio">Mark specializes in developing regulatory frameworks that enable innovation while ensuring compliance and safety.</p>
+                    <div class="expertise-tags">
+                        <span class="expertise-tag">Regulatory Policy</span>
+                        <span class="expertise-tag">Innovation</span>
+                        <span class="expertise-tag">Compliance</span>
+                    </div>
+                </div>
+
+                <div class="speaker-card">
+                    <div class="speaker-image" style="background-image: url('../images/speakers/energy/speaker3.jpg')"></div>
+                    <h3 class="speaker-name">Dr. Sarah Chen</h3>
+                    <p class="speaker-title">Sustainability Researcher<br>Green Tech Solutions</p>
+                    <p class="speaker-bio">Dr. Chen researches cutting-edge sustainable technologies for data center operations and energy management.</p>
+                    <div class="expertise-tags">
+                        <span class="expertise-tag">Green Technology</span>
+                        <span class="expertise-tag">Research</span>
+                        <span class="expertise-tag">Energy Efficiency</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 The GMU Cyber Resilience Center. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS.load('particles-js', '../particles-config.json');
+    </script>
+</body>
+</html> 
