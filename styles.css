@@ -37,15 +37,45 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     width: 100%;
+    padding: 0.5rem 0;
 }
 
 .org-name {
+    flex: 1 1 auto;
+    position: relative;
+    margin-right: 2rem;
+}
+
+.org-name-text {
     color: #64ffda;
     font-weight: 600;
     font-size: 1.2rem;
+    display: block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.org-name:hover .org-name-text {
+    text-shadow: 0 0 15px rgba(100, 255, 218, 0.4);
+    color: #9CFFF0;
 }
 
 .social-links {
@@ -65,7 +95,7 @@ nav {
 }
 
 main {
-    padding: 6rem 2rem 2rem;
+    padding: 8rem 2rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -242,7 +272,21 @@ footer {
     margin-top: 4rem;
 }
 
+@media (max-width: 1024px) {
+    .org-name-text {
+        font-size: 1.1rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .org-name {
+        margin-right: 1rem;
+    }
+    
+    .org-name-text {
+        font-size: 1rem;
+    }
+
     .countdown {
         gap: 1rem;
     }
@@ -255,10 +299,6 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .org-name {
-        font-size: 1rem;
-    }
-
     .upcoming-event h2 {
         font-size: 1.5rem;
         padding: 0 1rem;
@@ -266,8 +306,23 @@ footer {
 }
 
 @media (max-width: 480px) {
+    .org-name-text {
+        font-size: 0.9rem;
+    }
+    
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .org-name {
+        margin-right: 0;
+        text-align: center;
+    }
+    
     main {
-        padding: 5rem 1rem 1rem;
+        padding-top: 6rem;
     }
 
     .countdown {
@@ -276,10 +331,6 @@ footer {
 
     h1 {
         font-size: 2rem;
-    }
-
-    .org-name {
-        display: none;
     }
 
     .upcoming-event h2 {

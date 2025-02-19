@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="anime/anime/lib/anime.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .content-wrapper {
@@ -17,60 +18,99 @@
         }
 
         .video-section {
-            margin: 2rem 0;
-            max-height: 80vh;
-            overflow-y: auto;
-            padding-right: 1rem;
-            scrollbar-width: thin;
-            scrollbar-color: #64ffda #0a192f;
+            margin: 4rem 0;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 1rem 0;
+            background: rgba(10, 25, 47, 0.95);
         }
 
-        .video-section::-webkit-scrollbar {
-            width: 8px;
+        .video-container {
+            width: 100%;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 1rem 0;
+            scroll-behavior: auto;
         }
 
-        .video-section::-webkit-scrollbar-track {
-            background: #0a192f;
-        }
-
-        .video-section::-webkit-scrollbar-thumb {
-            background-color: #64ffda;
-            border-radius: 4px;
+        .video-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
         }
 
         .video-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: flex;
             gap: 1.5rem;
-            margin-top: 1.5rem;
-            padding: 0.5rem;
+            padding: 0 1rem;
+            width: max-content;
+            will-change: transform;
         }
 
         .video-card {
+            flex: 0 0 300px;
+            height: 169px;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center center;
+            position: relative;
+            cursor: pointer;
+            will-change: transform;
         }
 
         .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(100, 255, 218, 0.2);
+            transform: scale(1.05);
+            z-index: 2;
+            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.3);
         }
 
         .video-thumbnail {
             width: 100%;
-            aspect-ratio: 16/9;
+            height: 100%;
             object-fit: cover;
-            border-radius: 10px;
-            transition: all 0.3s ease;
+            border-radius: 12px;
+            transition: all 0.5s ease;
         }
 
-        .video-card:hover .video-thumbnail {
-            opacity: 0.8;
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(100, 255, 218, 0.15);
+            border: 2px solid rgba(100, 255, 218, 0.3);
+            color: #64ffda;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            font-size: 1.2rem;
+        }
+
+        .scroll-btn:hover {
+            background: rgba(100, 255, 218, 0.25);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-btn {
+            left: 1rem;
+        }
+
+        .next-btn {
+            right: 1rem;
+        }
+
+        .scroll-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         .video-info {
@@ -97,20 +137,24 @@
             }
             
             .video-section {
-                position: sticky;
-                top: 100px;
-                max-height: calc(100vh - 120px);
+                position: relative;
+                max-height: none;
+            }
+            
+            .video-card {
+                flex: 0 0 350px;
+                height: 197px;
             }
         }
 
-        @media (max-width: 1023px) {
-            .video-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        @media (max-width: 768px) {
+            .video-card {
+                flex: 0 0 250px;
+                height: 141px;
             }
             
-            .video-section {
-                max-height: none;
-                overflow-y: visible;
+            .video-grid {
+                gap: 1rem;
             }
         }
 
@@ -158,14 +202,49 @@
             top: 0;
             z-index: 1000;
         }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .past-events {
+            margin-top: 8rem;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            background: rgba(10, 25, 47, 0.95);
+        }
     </style>
 </head>
 <body>
     <div id="particles-js"></div>
     
-    <header>
+    <header class="fade-in">
         <nav>
-            <div class="org-name">The GMU Cyber Resilience Center</div>
+            <div class="org-name">
+                <span class="org-name-text">Center for Excellence in Government Cybersecurity Risk Management and Resilience</span>
+            </div>
             <div class="social-links">
                 <a href="https://www.linkedin.com/company/gmu-crc/" target="_blank" rel="noopener noreferrer" class="linkedin">
                     <i class="fab fa-linkedin"></i>
@@ -178,24 +257,24 @@
     </header>
 
     <main>
-        <section class="upcoming-event">
+        <section class="upcoming-event slide-in-left">
             <h1>Next Event</h1>
             <a href="events/upcoming-ai-state-local-gov.html" class="event-link">
                 <div class="event-card">
                     <div class="countdown">
-                        <div class="countdown-item">
+                        <div class="countdown-item scale-in">
                             <span id="days">00</span>
                             <span>Days</span>
                         </div>
-                        <div class="countdown-item">
+                        <div class="countdown-item scale-in">
                             <span id="hours">00</span>
                             <span>Hours</span>
                         </div>
-                        <div class="countdown-item">
+                        <div class="countdown-item scale-in">
                             <span id="minutes">00</span>
                             <span>Minutes</span>
                         </div>
-                        <div class="countdown-item">
+                        <div class="countdown-item scale-in">
                             <span id="seconds">00</span>
                             <span>Seconds</span>
                         </div>
@@ -208,50 +287,51 @@
             </a>
         </section>
 
-        <div class="content-wrapper">
-            <section class="past-events">
-                <h2>Past Events</h2>
-                <div class="events-grid" id="past-events-container">
-                    <!-- Past events will be populated by JavaScript -->
-                </div>
-            </section>
-
-            <section class="video-section">
-                <h2>Latest Videos</h2>
+        <section class="video-section slide-in-right">
+            <h2>Latest Videos</h2>
+            <div class="video-container">
                 <div class="video-grid">
-                    <a href="https://www.youtube.com/watch?v=IyshEuLIWp8" class="video-card" target="_blank">
-                        <img src="https://img.youtube.com/vi/IyshEuLIWp8/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=UdLJYfG_THI" class="video-card" target="_blank">
-                        <img src="https://img.youtube.com/vi/UdLJYfG_THI/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=7vOUkdCJt2o" class="video-card" target="_blank">
-                        <img src="https://img.youtube.com/vi/7vOUkdCJt2o/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=XEP_0apk8Oc" class="video-card" target="_blank">
-                        <img src="https://img.youtube.com/vi/XEP_0apk8Oc/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
-                    </a>
                     <a href="https://www.youtube.com/watch?v=YXRRagHzpyE" class="video-card" target="_blank">
                         <img src="https://img.youtube.com/vi/YXRRagHzpyE/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=NV9itPL66BM" class="video-card" target="_blank">
-                        <img src="https://img.youtube.com/vi/NV9itPL66BM/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
                     </a>
                     <a href="https://www.youtube.com/watch?v=4JImJ55Qcgk" class="video-card" target="_blank">
                         <img src="https://img.youtube.com/vi/4JImJ55Qcgk/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
                     </a>
+                    <a href="https://www.youtube.com/watch?v=IyshEuLIWp8" class="video-card" target="_blank">
+                        <img src="https://img.youtube.com/vi/IyshEuLIWp8/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=NV9itPL66BM" class="video-card" target="_blank">
+                        <img src="https://img.youtube.com/vi/NV9itPL66BM/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=7vOUkdCJt2o" class="video-card" target="_blank">
+                        <img src="https://img.youtube.com/vi/7vOUkdCJt2o/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
+                    </a>
                     <a href="https://www.youtube.com/watch?v=GXci9S0XS2E" class="video-card" target="_blank">
                         <img src="https://img.youtube.com/vi/GXci9S0XS2E/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=UdLJYfG_THI" class="video-card" target="_blank">
+                        <img src="https://img.youtube.com/vi/UdLJYfG_THI/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=XEP_0apk8Oc" class="video-card" target="_blank">
+                        <img src="https://img.youtube.com/vi/XEP_0apk8Oc/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
                     </a>
                     <a href="https://www.youtube.com/watch?v=yot-eWZZRj4" class="video-card" target="_blank">
                         <img src="https://img.youtube.com/vi/yot-eWZZRj4/maxresdefault.jpg" alt="Video thumbnail" class="video-thumbnail">
                     </a>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
+
+        <section class="past-events">
+            <h2>Past Events</h2>
+            <div class="events-grid" id="past-events-container">
+                <!-- Past events will be populated by JavaScript -->
+            </div>
+        </section>
+
     </main>
 
-    <footer>
+    <footer class="fade-in">
         <p>&copy; 2024 The GMU Cyber Resilience Center. All rights reserved.</p>
     </footer>
 

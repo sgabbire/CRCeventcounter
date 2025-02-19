@@ -180,10 +180,112 @@ updateCountdown();
 const pastEventsContainer = document.getElementById('past-events-container');
 const pastEvents = sortedEvents.filter(event => new Date(event.date) < now);
 
+// Initialize animations
+document.addEventListener('DOMContentLoaded', () => {
+    // Fade in header and footer
+    anime({
+        targets: '.fade-in',
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 1000,
+        easing: 'easeOutExpo',
+        delay: anime.stagger(100)
+    });
+
+    // Slide in sections from left
+    anime({
+        targets: '.slide-in-left',
+        opacity: [0, 1],
+        translateX: [-50, 0],
+        duration: 1000,
+        easing: 'easeOutExpo',
+        delay: 300
+    });
+
+    // Slide in sections from right
+    anime({
+        targets: '.slide-in-right',
+        opacity: [0, 1],
+        translateX: [50, 0],
+        duration: 1000,
+        easing: 'easeOutExpo',
+        delay: 500
+    });
+
+    // Scale in countdown items
+    anime({
+        targets: '.scale-in',
+        opacity: [0, 1],
+        scale: [0.8, 1],
+        duration: 1000,
+        easing: 'easeOutElastic(1, .5)',
+        delay: anime.stagger(100)
+    });
+
+    // Initialize scroll animations
+    const scrollAnimations = document.querySelectorAll('.animate-on-scroll');
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '50px'
+    };
+
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                anime({
+                    targets: entry.target,
+                    opacity: [0, 1],
+                    translateY: [30, 0],
+                    duration: 800,
+                    easing: 'easeOutCubic'
+                });
+                scrollObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    scrollAnimations.forEach(element => scrollObserver.observe(element));
+});
+
+// Add hover animations for cards
+document.querySelectorAll('.event-card, .video-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        anime({
+            targets: card,
+            scale: 1.03,
+            boxShadow: '0 15px 30px rgba(100, 255, 218, 0.3)',
+            duration: 300,
+            easing: 'easeOutCubic'
+        });
+    });
+
+    card.addEventListener('mouseleave', () => {
+        anime({
+            targets: card,
+            scale: 1,
+            boxShadow: '0 8px 20px rgba(100, 255, 218, 0.1)',
+            duration: 300,
+            easing: 'easeOutCubic'
+        });
+    });
+});
+
+// Add click animation for buttons
+document.querySelectorAll('.glow-button').forEach(button => {
+    button.addEventListener('click', (e) => {
+        anime({
+            targets: button,
+            scale: [1, 0.95, 1],
+            duration: 300,
+            easing: 'easeInOutQuad'
+        });
+    });
+});
+
 pastEvents.reverse().forEach(event => {
     const eventCard = document.createElement('a');
     eventCard.href = event.link;
-    eventCard.className = 'event-link';
+    eventCard.className = 'event-link animate-on-scroll';
     
     const cardContent = document.createElement('div');
     cardContent.className = 'past-event-card';
@@ -221,4 +323,119 @@ pastEvents.reverse().forEach(event => {
     cardContent.appendChild(content);
     eventCard.appendChild(cardContent);
     pastEventsContainer.appendChild(eventCard);
+});
+
+// Initialize video scroll functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const videoContainer = document.querySelector('.video-container');
+    const videoGrid = document.querySelector('.video-grid');
+    const videoCards = document.querySelectorAll('.video-card');
+    let isHovered = false;
+
+    // Function to handle infinite scroll animation
+    function startInfiniteScroll() {
+        // Reset scroll position
+        videoContainer.scrollLeft = 0;
+        
+        // Create the animation
+        anime({
+            targets: videoContainer,
+            scrollLeft: videoGrid.scrollWidth - videoContainer.clientWidth,
+            duration: 24000, // 24 seconds
+            easing: 'linear',
+            loop: true,
+            complete: function() {
+                videoContainer.scrollLeft = 0;
+            }
+        });
+    }
+
+    // Start the infinite scroll
+    startInfiniteScroll();
+
+    // Pause/resume on hover
+    videoContainer.addEventListener('mouseenter', () => {
+        anime.remove(videoContainer);
+    });
+
+    videoContainer.addEventListener('mouseleave', () => {
+        const currentScroll = videoContainer.scrollLeft;
+        const remainingScroll = videoGrid.scrollWidth - videoContainer.clientWidth - currentScroll;
+        const remainingTime = (remainingScroll / (videoGrid.scrollWidth - videoContainer.clientWidth)) * 24000;
+
+        anime({
+            targets: videoContainer,
+            scrollLeft: videoGrid.scrollWidth - videoContainer.clientWidth,
+            duration: remainingTime * 1.5, // Adjusted for 24 seconds total duration
+            easing: 'linear',
+            loop: true,
+            complete: function() {
+                videoContainer.scrollLeft = 0;
+                startInfiniteScroll();
+            }
+        });
+    });
+
+    // Enhanced hover effect for videos
+    videoCards.forEach((card, index) => {
+        card.addEventListener('mouseenter', () => {
+            anime({
+                targets: card,
+                scale: 1.05,
+                zIndex: 10,
+                boxShadow: '0 20px 40px rgba(100, 255, 218, 0.3)',
+                duration: 500,
+                easing: 'cubicBezier(0.420, 0.000, 0.580, 1.000)'
+            });
+
+            if (index > 0) {
+                anime({
+                    targets: videoCards[index - 1],
+                    scale: 0.95,
+                    opacity: 0.7,
+                    duration: 500,
+                    easing: 'cubicBezier(0.420, 0.000, 0.580, 1.000)'
+                });
+            }
+            if (index < videoCards.length - 1) {
+                anime({
+                    targets: videoCards[index + 1],
+                    scale: 0.95,
+                    opacity: 0.7,
+                    duration: 500,
+                    easing: 'cubicBezier(0.420, 0.000, 0.580, 1.000)'
+                });
+            }
+        });
+
+        card.addEventListener('mouseleave', () => {
+            anime({
+                targets: card,
+                scale: 1,
+                zIndex: 1,
+                boxShadow: '0 8px 20px rgba(100, 255, 218, 0.1)',
+                duration: 500,
+                easing: 'cubicBezier(0.420, 0.000, 0.580, 1.000)'
+            });
+
+            if (index > 0) {
+                anime({
+                    targets: videoCards[index - 1],
+                    scale: 1,
+                    opacity: 1,
+                    duration: 500,
+                    easing: 'cubicBezier(0.420, 0.000, 0.580, 1.000)'
+                });
+            }
+            if (index < videoCards.length - 1) {
+                anime({
+                    targets: videoCards[index + 1],
+                    scale: 1,
+                    opacity: 1,
+                    duration: 500,
+                    easing: 'cubicBezier(0.420, 0.000, 0.580, 1.000)'
+                });
+            }
+        });
+    });
 }); 
